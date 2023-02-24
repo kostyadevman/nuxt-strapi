@@ -7,24 +7,17 @@
   <section class="skills">
     <h2 class="skills__title">Skills</h2>
     <ul class="skills__list">
-      <li class="skills__item">разрабатываю в основном на react + redux</li>
-      <li class="skills__item">умею настраивать сборку проекта с помощью webpack, vite, babel, a также настраивать линтеры - eslint и stylelint</li>
-      <li class="skills__item">придерживаюсь FSD архитектуре</li>
-      <li class="skills__item">могу писать unit тесты</li>
-      <li class="skills__item">использую в своих проектах storybook, а для скриншотного тестирования - loki</li>
-      <li class="skills__item">могу разрабатывать приложения для разных языков, используя i18next</li>
-      <li class="skills__item">умею адаптивно верстать, а также использовать препроцессоры, css-модули, БЭМ</li>
-      <li class="skills__item">умею работать с Figma, как разработчик</li>
-      <li class="skills__item">изучаю на собственных проектах TypeScript, RTK Query, storybook, i18next, scss, loki, json-server</li>
+      <li v-for="skill in skills" class="skills__item" :key="skill.id">
+        {{ skill.attributes.title }}
+      </li>
     </ul>
   </section>
 </div>
 </template>
 
-<script>
-export default {
-
-}
+<script setup>
+  const { find } = useStrapi()
+  const {data: skills} = await find('skills')
 </script>
 
 <style lang="scss" scoped>

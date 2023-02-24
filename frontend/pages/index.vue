@@ -1,11 +1,11 @@
 <template>
   <section class="hero">
-    <img src="~/assets/img/photo.jpg" alt="a man smiling" class="hero__image">
+    <img src="http://localhost:1337/uploads/photo_f2421f6f11.jpg" alt="a man smiling" class="hero__image">
     <div class="hero__bio">
-      <h2>Тимошенко Константин</h2>
-      <h3>Фронтенд-разработчик</h3>
+      <h2>{{ firstName + ' ' + lastName }}</h2>
+      <h3>{{ position }}</h3>
       <p class="basic-info">
-        Привет! Я занимаюсь разработкой современных веб приложений
+        {{ info }}
       </p>
       <nav>
         <nuxt-link to="/about" class="nav__link nav__link--btn">Подробнее...</nuxt-link>
@@ -15,6 +15,13 @@
   </section>
 </template>
 
+<script setup>
+
+const { find } = useStrapi();
+const {data: { attributes: {
+  firstName, lastName, info, position
+} }} = await find('profile');
+</script>
 
 <style lang="scss" scoped >
 
