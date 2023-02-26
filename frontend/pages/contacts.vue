@@ -76,7 +76,7 @@
 const { find } = useStrapi();
 const {data: { attributes: {
    email, phone, github, telegram
-} }} = await find('profile');
+} }} = await find('api/profile');
 
 </script>
 

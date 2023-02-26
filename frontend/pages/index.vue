@@ -1,6 +1,6 @@
 <template>
   <section class="hero">
-    <img src="http://localhost:1337/uploads/photo_f2421f6f11.jpg" alt="a man smiling" class="hero__image">
+    <img :src="strapiUrl+imgUrl" :alt="alternativeText" class="hero__image">
     <div class="hero__bio">
       <h2>{{ firstName + ' ' + lastName }}</h2>
       <h3>{{ position }}</h3>
@@ -18,9 +18,13 @@
 <script setup>
 
 const { find } = useStrapi();
+const strapiUrl = useStrapiUrl()
+
 const {data: { attributes: {
-  firstName, lastName, info, position
-} }} = await find('profile');
+  firstName, lastName, info, position, photo
+} }} = await find('api/profile?populate=*');
+
+const { data: [{ attributes: { alternativeText, url: imgUrl}}]} = photo;
 </script>
 
 <style lang="scss" scoped >

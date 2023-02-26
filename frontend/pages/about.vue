@@ -17,7 +17,7 @@
 
 <script setup>
   const { find } = useStrapi()
-  const {data: skills} = await find('skills')
+  const {data: skills} = await find('api/skills')
 </script>
 
 <style lang="scss" scoped>
